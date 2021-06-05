@@ -14,8 +14,26 @@ class RumahSakitController extends Controller
      */
     public function index()
     {
-        $pasien = DB::table('pasien')->get();
+        $pasien = DB::table('pasien')
+        ->get();
         return view('pasien0060' , ['pasien' => $pasien]);
+    }
+
+    public function join()
+    {
+        $pasien = DB::table('pasien')
+        ->join('kamar', 'pasien.id', '=', 'kamar.id_pasien')
+        ->join('dokter', 'kamar.id_dokter', '=', 'dokter.id')
+        ->select('pasien.id', 'pasien.nama', 'pasien.alamat' , 'dokter.nama AS nama_dokter' , 'dokter.jabatan')
+        ->get();
+        return view('join0060' , ['pasien' => $pasien]);
+    }
+
+    public function cari(Request $request){
+        $cari = $request->lihat;
+        $pasien=DB::table('pasien')
+        ->where('nama','like',"%".$cari."%")->paginate();
+        return view('pasien0060',['pasien'=>$pasien]);
     }
 
     /**
@@ -36,7 +54,8 @@ class RumahSakitController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('pasien')->insert([
+        DB::table('pasien')
+        ->insert([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
         ]);
@@ -91,7 +110,8 @@ class RumahSakitController extends Controller
      */
     public function hapus($id)
     {
-        DB::table('pasien')->where('id', $id)->delete();
+        DB::table('pasien')
+        ->where('id', $id)->delete();
         return redirect('/pasien');
     }
 }

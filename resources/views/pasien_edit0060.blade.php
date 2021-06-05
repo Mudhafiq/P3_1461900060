@@ -3,6 +3,7 @@
 </head>
 <body>
     <a href="/pasien"> Kembali</a>
+    <h3>Edit Data Pasien</h3>
     @foreach($pasien as $ps)
     <form action="/edit/update" method="post">
         @csrf

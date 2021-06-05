@@ -24,3 +24,5 @@ Route::post('/tambah/store',[RumahSakitController::Class,'store']);
 Route::get('/edit/{id}',[RumahSakitController::Class,'edit']);
 Route::post('/edit/update',[RumahSakitController::Class,'update']);
 Route::get('/hapus/{id}',[RumahSakitController::Class,'hapus']);
+Route::get('/pasien/cari',[RumahSakitController::Class,'cari']);
+Route::get('/join',[RumahSakitController::Class,'join']);

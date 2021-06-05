@@ -1,13 +1,8 @@
 <body>
     <div style="overflow-x:auto;">
-        <a href="/tambah">Tambah Data </a></br>
-        <a href="/join">Data Lengkap</a>
-        <p>Cari pasien :</p>
-        <form action="/pasien/cari" method="GET">
-        <input type="text" name="lihat" placeholder="Cari pasien.." value="{{ old('cari') }}">
-        <input type="submit" value="CARI">
+        <a href="/pasien">kembali </a>
         </br>
-        </br>
+        <h4>Data Pasien Lengkap</h4>
         <table border="3">
         <style>
             table {
@@ -23,7 +18,8 @@
                     <th>Id</th>
                     <th>Nama</th>
                     <th>Alamat</th>
-                    <th>Opsi</th>
+                    <th>Dokter</th>
+                    <th>Jabatan</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,11 +28,8 @@
                     <td>{{$ps->id}}</td>
                     <td>{{$ps->nama}}</td>
                     <td>{{$ps->alamat}}</td>
-                    <td>
-                    <a href="/edit/{{ $ps->id }}">Edit</a>
-                    |
-                    <a href="/hapus/{{ $ps->id }}">Hapus</a>
-                    </td>
+                    <td>{{$ps->nama_dokter}}</td>
+                    <td>{{$ps->jabatan}}</td>
                 </tr>
                 @endforeach
             </tbody>
