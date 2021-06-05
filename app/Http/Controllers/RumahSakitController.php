@@ -19,22 +19,24 @@ class RumahSakitController extends Controller
         return view('pasien0060' , ['pasien' => $pasien]);
     }
 
-    public function join()
-    {
-        $pasien = DB::table('pasien')
-        ->join('kamar', 'pasien.id', '=', 'kamar.id_pasien')
-        ->join('dokter', 'kamar.id_dokter', '=', 'dokter.id')
-        ->select('pasien.id', 'pasien.nama', 'pasien.alamat' , 'dokter.nama AS nama_dokter' , 'dokter.jabatan')
-        ->get();
-        return view('join0060' , ['pasien' => $pasien]);
-    }
-
     public function cari(Request $request){
         $cari = $request->lihat;
         $pasien=DB::table('pasien')
         ->where('nama','like',"%".$cari."%")->paginate();
         return view('pasien0060',['pasien'=>$pasien]);
     }
+
+    public function join()
+    {
+        $pasien = DB::table('pasien')
+        ->join('kamar', 'pasien.id', '=', 'kamar.id_pasien')
+        ->join('dokter', 'kamar.id_dokter', '=', 'dokter.id')
+        ->select('pasien.id', 'pasien.nama', 'pasien.alamat', 'dokter.nama AS nama_dokter' , 'dokter.jabatan')
+        ->get();
+        return view('join0060' , ['pasien' => $pasien]);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
