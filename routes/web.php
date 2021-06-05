@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RumahSakitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/pasien',[RumahSakitController::Class,'index']);
+Route::get('/tambah',[RumahSakitController::Class,'tambah']);
+Route::post('/tambah/store',[RumahSakitController::Class,'store']);
+Route::get('/edit/{id}',[RumahSakitController::Class,'edit']);
+Route::post('/edit/update',[RumahSakitController::Class,'update']);
+Route::get('/hapus/{id}',[RumahSakitController::Class,'hapus']);
